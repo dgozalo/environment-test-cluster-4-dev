@@ -1,0 +1,7 @@
+dependencies:
+- host: github.com
+  owner: dgozalo
+  repo: gotest-cluster-4-cjxd1
+  url: https://github.com/dgozalo/gotest-cluster-4-cjxd1.git
+  version: ""
+  versionURL: ""
