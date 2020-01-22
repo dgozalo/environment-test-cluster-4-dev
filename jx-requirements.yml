@@ -1,38 +1,83 @@
 autoUpdate:
   enabled: false
   schedule: ""
+bootConfigURL: https://github.com/cloudbees/cloudbees-jenkins-x-boot-config.git
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
+  clusterName: test-cluster-4
+  devEnvApprovers:
+  - dgozalo
+  environmentGitOwner: dgozalo
   environmentGitPublic: true
-  project: ""
-  azure: {}
-  provider: gke
-  zone: ""
-gitops: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  provider: eks
+  region: us-east-1
+  registry: 105716213112.dkr.ecr.us-east-1.amazonaws.com
 environments:
-  - key: dev
-  - key: staging
-  - key: production
+- ingress:
+    domain: cjxd-5.cdx-dev.beescloud.com
+    externalDNS: true
+    ignoreLoadBalancer: true
+    namespaceSubDomain: -jx.
+    tls:
+      email: dgozalo@cloudbees.com
+      enabled: true
+      production: true
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  domain: cjxd-5.cdx-dev.beescloud.com
+  externalDNS: true
+  ignoreLoadBalancer: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: dgozalo@cloudbees.com
+    enabled: true
+    production: true
 kaniko: true
+repository: nexus
 secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
     enabled: true
-    url: ""
+    url: s3://test-cluster-4-logs-7de1616a-d679-4be9-86e8-c387d5443faf
   reports:
     enabled: true
-    url: ""
+    url: s3://test-cluster-4-reports-631c38fd-d492-4635-bae9-f0137af4eaab
   repository:
     enabled: true
-    url: ""
+    url: s3://test-cluster-4-repository-c96b5558-4de5-42a0-9b00-2da441da8b04
+vault:
+  aws:
+    autoCreate: true
+    iamUserName: cjxd-vault
+  disableURLDiscovery: true
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
   ref: 2.0.1139+cjxd.6
   url: https://github.com/cloudbees/cloudbees-jenkins-x-versions.git
