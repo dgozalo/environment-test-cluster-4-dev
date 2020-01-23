@@ -6,5 +6,5 @@ dex:
         clientSecret: vault:gitOps/dgozalo/environment-test-cluster-4-dev/dex-connectors-github-config:clientSecret
         name: GitHub
         type: github
-  domain: cjxd-5.cdx-dev.beescloud.com
+  domain: dex-jx.cjxd-5.cdx-dev.beescloud.com
 enabledConnector: GitHub
